@@ -1,0 +1,37 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <main class="fetching">
+
+    <div id="pokemon-container">
+      <img id="pokeball" src="./static/pokeball.webp">
+      <img id="pokemon-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D">
+    </div>
+
+    <div id="answer">
+      <div id="bg-overlay"></div>
+      <div id="text-overlay"></div>
+    </div>
+
+    <section id="controls">
+      <button id="play">Play</button>
+      <div id="choices"></div>
+    </section>
+
+    <section id="score">
+      <div id="score_div"></div>
+    </section>
+  </main>
+
+  <script src="./api.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
