@@ -7,13 +7,16 @@ const playBtn = document.querySelector('#play');
 playBtn.addEventListener('click', fetchData);
 addAnswerHandler();
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 async function fetchData() {
+  await delay(4000);
   resetImage();
   gameData = await window.getPokeData();
   showSilhouette();
   displayChoices();
-  playBtn.innerHTML="Next";
+  choices.style.visibility='visible';
+  playBtn.remove();
 }
 
 function resetImage() {
@@ -36,13 +39,21 @@ function displayChoices() {
   choices.innerHTML = choicesHTML;
 }
 
+function wait(ms){
+  var start = new Date().getTime();
+  var end = start;
+  while(end < start + ms) {
+    end = new Date().getTime();
+ }
+}
+
 let score = 0;
 function addAnswerHandler() {
   choices.addEventListener('click', e => {
+    choices.style.visibility="hidden";
     const { name } = e.target.dataset;
     const resultClass = (name === gameData.correct.name) ?
       'correct' : 'incorrect';
-    // sleep(2000);
     if(resultClass=='correct'){
       score+=1;
       var audio = new Audio('./static/crowd-cheer-ii-6263 (mp3cut.net).mp3');
@@ -57,13 +68,15 @@ function addAnswerHandler() {
     document.querySelector('#score_div').innerHTML="Score: "+score;
     e.target.classList.add(resultClass);
     revealPokemon();
-    
+
   });
 }
 
 function revealPokemon() {
   main.classList.add('revealed');
   textOverlay.textContent = `${gameData.correct.name}!`;
+  
+  fetchData();
 }
 
 
